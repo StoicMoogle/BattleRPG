@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+#include <random>
+using namespace std;
+
+int main() {
+  bool playGame = true;
+  random_device rd;
+
+  while(playGame == true) {
+    int playerChoice;
+    int enemyChoice = rd() % 3;
+    int fleeChance = rd() % 100;
+
+    cout << "Commands: " << endl;
+    cout << "1) Sword Smash" << endl;
+    cout << "2) Fire Explosion" << endl;
+    cout << "3) Sneaky Dragger" << endl;
+    cout << "4) Flee" << endl;
+
+    cin >> playerChoice;
+
+    switch(playerChoice) {
+      case 1:
+        cout << "You swing your sword at the enemy!" << endl;
+        break;
+
+      case 2:
+        cout << "You shoot fire from your hands!" << endl;
+        break;
+
+      case 3:
+        cout << "You take out your dagger and stab!" << endl;
+        break;
+      
+      case 4:
+        if(fleeChance >= 70) {
+          cout << "You fled successfully! The game ends." << endl;
+          playGame = false;
+          break;
+        }
+        else {
+          cout << "You couldn't escape!" << endl;
+          break;
+        }
+        
+
+      default:
+        cout << "You didn't know what to do, so your turn skips." << endl;
+    }
+
+    if(playGame == false) {
+      break;
+    }
+
+    switch(enemyChoice) {
+      case 0:
+        cout << "The enemy runs at you with its sword!" << endl;
+        break;
+
+      case 1:
+        cout << "The enemy shoots lightning at you!" << endl;
+        break;
+
+      case 2:
+        cout << "The enemy flees. They have disappeared." << endl;
+        playGame = false;
+    }
+    if(playGame == false) {
+      break;
+    }
+
+  }
+}
